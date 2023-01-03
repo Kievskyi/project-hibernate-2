@@ -1,7 +1,7 @@
-package org.denysdudnik.repository.impl;
+package org.denysdudnik.factories.impl;
 
 import org.denysdudnik.entity.*;
-import org.denysdudnik.repository.MySessionFactory;
+import org.denysdudnik.factories.MySessionFactory;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
@@ -9,7 +9,7 @@ import org.hibernate.cfg.Environment;
 import java.util.Properties;
 
 public class MySQLSessionFactory implements MySessionFactory {
-    SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     public MySQLSessionFactory() {
         Properties properties = new Properties();
