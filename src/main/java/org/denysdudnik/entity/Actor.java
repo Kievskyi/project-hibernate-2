@@ -2,7 +2,8 @@ package org.denysdudnik.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -13,7 +14,8 @@ import java.util.Set;
 @Entity
 @Table(name = "actor", schema = "movie")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Data
+@ToString(exclude = "films")
+@EqualsAndHashCode(exclude = "films")
 public class Actor {
 
     @Id
@@ -38,3 +40,5 @@ public class Actor {
             indexes = @Index(name = "idx_fk_film_id", columnList = "film_id"))
     Set<Film> films = new HashSet<>();
 }
+
+

@@ -1,20 +1,19 @@
 package org.denysdudnik.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Data;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "address", schema = "movie",
-        indexes = {
-                @Index(name = "idx_fk_city_id", columnList = "city_id")
-        })
+@Builder
+@Table(name = "address", schema = "movie")
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
 public class Address {
 
     @Id
@@ -22,23 +21,23 @@ public class Address {
     @Column(name = "address_id")
     Short id;
 
-    @Column(name = "address", length = 50, nullable = false)
+    @Column(name = "address")
     String address;
 
-    @Column(name = "address2", length = 50)
+    @Column(name = "address2")
     String address2;
 
-    @Column(name = "district", length = 20, nullable = false)
+    @Column(name = "district")
     String district;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "city_id")
     City city;
 
-    @Column(name = "postal_code", length = 10)
+    @Column(name = "postal_code")
     String postalCode;
 
-    @Column(name = "phone", length = 20, nullable = false)
+    @Column(name = "phone")
     String phone;
 
     @Column(name = "last_update")

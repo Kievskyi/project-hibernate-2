@@ -1,17 +1,19 @@
 package org.denysdudnik.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Data;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Builder
 @Table(name = "rental", schema = "movie")
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
 public class Rental {
 
     @Id
@@ -22,18 +24,18 @@ public class Rental {
     @Column(name = "rental_date", nullable = false)
     LocalDateTime rentalDate;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "inventory_id")
-    Inventory inventoryId;
+    Inventory inventory;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "customer_id")
-    Customer customerId;
+    Customer customer;
 
     @Column(name = "return_date")
     LocalDateTime returnDate;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "staff_id")
     Staff staffId;
 

@@ -1,19 +1,43 @@
 package org.denysdudnik.dao;
 
-import org.denysdudnik.factories.impl.MySQLSessionFactory;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface Dao<T> {
-     SessionFactory sessionFactory = new MySQLSessionFactory().getSessionFactory();
+public abstract class Dao<T> {
+    private final Class<T> clazz;
 
-    Optional<T> getById(Short id);  
+    public Dao(Class<T> clazz, SessionFactory sessionFactory) {
+        this.clazz = clazz;
+    }
 
-    List<T> getAll();
+    public T getById(Short id, Session session) {
 
-    void update();
+        return session.get(clazz, id);
+    }
 
-    void delete();
+    public T getById(Byte id, Session session) {
+
+        return session.get(clazz, id);
+    }
+
+    public List<T> getAll(Session session) {
+        List<T> list = session.createQuery("from " + clazz.getName(), clazz).list();
+
+        return list;
+    }
+
+    public void save(T entity, Session session) {
+        session.saveOrUpdate(entity);
+    }
+
+    public void update(T entity, Session session) {
+        session.merge(entity);
+    }
+
+
+    public void delete(T entity, Session session) {
+        session.delete(entity);
+    }
 }

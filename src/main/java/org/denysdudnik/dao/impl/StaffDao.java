@@ -2,28 +2,15 @@ package org.denysdudnik.dao.impl;
 
 import org.denysdudnik.dao.Dao;
 import org.denysdudnik.entity.Staff;
+import org.denysdudnik.entity.Store;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
-import java.util.List;
-import java.util.Optional;
+public class StaffDao extends Dao<Staff> {
 
-public class StaffDao implements Dao<Staff> {
-    @Override
-    public Optional<Staff> getById(Short id) {
-        return Optional.empty();
+
+    public StaffDao(SessionFactory sessionFactory) {
+        super(Staff.class, sessionFactory);
     }
 
-    @Override
-    public List<Staff> getAll() {
-        return null;
-    }
-
-    @Override
-    public void update() {
-
-    }
-
-    @Override
-    public void delete() {
-
-    }
 }

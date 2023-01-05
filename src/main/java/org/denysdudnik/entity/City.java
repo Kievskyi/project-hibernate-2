@@ -19,11 +19,11 @@ public class City {
     @Column(name = "city_id")
     Short id;
 
-    @Column(name = "city", nullable = false)
+    @Column(name = "city")
     String city;
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "country_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "country_id")
     Country country;
 
     @Column(name = "last_update")

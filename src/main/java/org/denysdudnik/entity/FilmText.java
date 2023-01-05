@@ -13,9 +13,12 @@ import org.hibernate.annotations.Type;
 public class FilmText {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "film_id")
     Short id;
+
+    @OneToOne
+    @JoinColumn(name = "film_id")
+    Film film;
 
     @Column(name = "title", nullable = false)
     String title;

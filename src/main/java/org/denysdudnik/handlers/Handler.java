@@ -1,6 +1,8 @@
 package org.denysdudnik.handlers;
 
+import org.hibernate.SessionFactory;
+
 public interface Handler {
 
-    void handle();
+    void handle(SessionFactory sessionFactory);
 }

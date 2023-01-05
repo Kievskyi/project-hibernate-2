@@ -40,6 +40,7 @@ public class MySQLSessionFactory implements MySessionFactory {
     }
 
     public SessionFactory getSessionFactory() {
+
         return sessionFactory;
     }
 }

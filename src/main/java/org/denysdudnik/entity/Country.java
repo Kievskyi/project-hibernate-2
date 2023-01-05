@@ -19,7 +19,7 @@ public class Country {
     @Column(name = "country_id")
     Short id;
 
-    @Column(name = "country", length = 50, nullable = false)
+    @Column(name = "country")
     String country;
 
     @Column(name = "last_update")

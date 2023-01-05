@@ -1,9 +1,10 @@
 package org.denysdudnik.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Data;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
@@ -12,6 +13,9 @@ import java.time.LocalDateTime;
 @Table(name = "customer", schema = "movie")
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Customer {
 
     @Id
@@ -19,7 +23,7 @@ public class Customer {
     @Column(name = "customer_id")
     Short id;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne()
     @JoinColumn(name = "store_id")
     Store storeId;
 
@@ -29,17 +33,19 @@ public class Customer {
     @Column(name = "last_name")
     String lastName;
 
-    @Column(name = "email", length = 50)
+    @Column(name = "email")
     String email;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @OneToOne()
     @JoinColumn(name = "address_id")
-    Address addressId;
+    Address address;
 
-    @Column(name = "active")
+    @Column(name = "active", columnDefinition = "BIT")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     Boolean active;
 
     @Column(name = "create_date")
+    @CreationTimestamp
     LocalDateTime createDate;
 
     @Column(name = "last_update")

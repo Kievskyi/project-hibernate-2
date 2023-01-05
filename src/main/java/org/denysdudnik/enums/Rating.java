@@ -12,7 +12,7 @@ public enum Rating {
 
     private final String rating;
 
-    Rating(String rating) {
-        this.rating = rating;
+    Rating(String value) {
+        this.rating = value;
     }
 }

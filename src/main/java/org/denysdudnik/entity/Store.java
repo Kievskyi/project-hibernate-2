@@ -21,7 +21,7 @@ public class Store {
 
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "manager_staff_id")
-    Staff staffId;
+    Staff staff;
 
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "address_id")
